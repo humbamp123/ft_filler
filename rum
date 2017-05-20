@@ -1,0 +1,2 @@
+make re
+./resources/filler_vm -f resources/maps/map01 -i

@@ -6,18 +6,18 @@
 #    By: apineda <apineda@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/08 14:15:48 by apineda           #+#    #+#              #
-#    Updated: 2017/05/19 21:08:38 by apineda          ###   ########.fr        #
+#    Updated: 2017/05/20 15:38:52 by apineda          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = filler
 
-FILENAMES = ft_filler
+FILENAMES = ft_filler ft_zone_map ft_save_piece
 INCLUDE_DIR = ./inc
 
 CC = gcc
 
-CCFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
+CCFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 INC = $(INCLUDE_DIR)
 LIBFT = ./libft
 LIBFT_A = libft.a

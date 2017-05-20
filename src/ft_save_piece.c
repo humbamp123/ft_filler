@@ -1,47 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_filler.h                                        :+:      :+:    :+:   */
+/*   ft_save_piece.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/19 21:11:14 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/20 15:42:16 by apineda          ###   ########.fr       */
+/*   Created: 2017/05/20 15:38:28 by apineda           #+#    #+#             */
+/*   Updated: 2017/05/20 15:43:52 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_FILLER_H
-# define FT_FILLER_H
+#include "ft_filler.h"
 
-# include "libft.h"
-
-typedef struct		s_piece
+static	void			ft_piece_size(t_piece *p)
 {
-	int				h;
-	int				w;
-	int				i;
-	int				j;
-	// int				k;
-	// int				l;
-	// int				x;
-	// int				z;
-}					t_piece;
+	char	*str;
+	char	**array;
 
-typedef struct		s_map
+	str = NULL;
+	get_next_line(0, &str);
+	array = ft_strsplit(str, ' ');
+	p->h = ft_atoi(array[1]);
+	p->w = ft_atoi(array[2]);
+	ft_arraydel(array);
+}
+
+void					ft_save_piece(t_piece *p)
 {
-	int				i;
-	int				j;
-	int				k;
-	int				l;
-	int				x;
-	int				z;
-	char			player;
-	int				h;
-	int				w;
-	char			**map;
-	char			**zone;
-}					t_map;
-
-void				ft_zone_map(t_map *m);
-
-#endif
+	ft_piece_size(p);
+	p->i = 0;
+	while (p->i < p->h)
+	{
+		while (p->j < p->w)
+		{
+			
+		}
+	}
+}		
