@@ -3,46 +3,46 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: apineda <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: apineda <apineda@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/08 14:15:48 by apineda           #+#    #+#              #
-#    Updated: 2017/03/17 14:12:09 by apineda          ###   ########.fr        #
+#    Updated: 2017/05/19 17:18:46 by apineda          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = CHANGE.a
+NAME = filler
 
-FILENAMES =
-INCLUDE_DIR = ./includes
+FILENAMES = filler
+INCLUDE_DIR = ./inc
 
 CC = gcc
-AR = AR
 
-CCFLAGS = -Wall -Wextra -Werror
-INC = -I $(INCLUDE_DIR)
+CCFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
+INC = $(INCLUDE_DIR)
+LIBFT = ./libft
+LIBFT_A = libft.a
+LIBFT_ALL = $(LIBFT)/$(LIBFT_A) 
 
-SOURCES_1 = $(addprefix srcs/, $(FILENAMES))
-OBJECTS_1 = $(addprefix objs/, $(FILENAMES:.c=.o))
+SRC_1 = $(addprefix src/, $(addsuffix .c, $(FILENAMES)))
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS_1)
-	@$(AR) rc $@ $^
-	@ranlib $@
-	@echo "CHANGE compiled!"
-
-objs:
-	@mkdir $@
-
-objs/%.o: srcs/%.c | objs
-	@$(CC) $(CCFLAGS) $(INC) -c $< -o $@
+$(NAME): $(SRC_1)
+	@make -C libft
+	@echo "\033[32mCompiled libft\033[0m"
+	@$(CC) -g -I $(INC) -I $(LIBFT)/includes $(LIBFT_ALL) $(SRC_1) -o $(NAME)
+	@echo "\033[32m$(NAME) compiled\033[0m"
 
 clean:
-	@rm -rf objs
+	@make -C libft clean
+	@echo "\033[31;1m libs cleaned\033[0m"
 
 fclean: clean
+	@make -C libft fclean
 	@rm -f $(NAME)
+	@echo "\033[31;1m$(NAME) and libs fcleaned\033[0m"
 
 re: fclean all
 
 .PHONY: clean
+
