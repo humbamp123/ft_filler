@@ -1,5 +1,2 @@
-make -C src/lib/libft/ re
 make re
-clang -Wall -Wextra -Werror -I includes/ -o main.o -c main.c -g 
-clang -o test_ft_filler main.o src/lib/libft_filler.a -I includes/ src/lib/libft/ -lft -g 
-rm main.o
+./resources/filler_vm -f resources/maps/map01 -p1 resources/players/abanlin.filler -p2 ./filler

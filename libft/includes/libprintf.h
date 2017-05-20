@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 13:19:51 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/12 00:09:11 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/19 21:48:46 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,6 @@ typedef	struct		s_print
 	char			neg;
 	t_flags			flags;
 }					t_print;
-
-int					ft_printf(const char *format, ...);
-int					ft_vprintf(const char *format, va_list args);
 
 int					ft_vasprintf(char **ret, const char *fmt, va_list arg);
 int					ft_queenies_crazy_write(int fd, char *str, int len);

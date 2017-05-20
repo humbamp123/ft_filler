@@ -35,3 +35,7 @@
 # Mac files
 *.DS_Store
 *._*
+
+# Filler Files
+*.trace
+filler

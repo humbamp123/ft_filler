@@ -6,13 +6,13 @@
 #    By: apineda <apineda@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/08 14:15:48 by apineda           #+#    #+#              #
-#    Updated: 2017/05/19 17:18:46 by apineda          ###   ########.fr        #
+#    Updated: 2017/05/19 21:08:38 by apineda          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = filler
 
-FILENAMES = filler
+FILENAMES = ft_filler
 INCLUDE_DIR = ./inc
 
 CC = gcc
