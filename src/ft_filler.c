@@ -6,13 +6,13 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 21:08:29 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/19 22:03:45 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/19 22:09:35 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_filler.h"
 
-static	int		ft_player_check(char *str)
+static	char		ft_player_check(char *str)
 {
 	get_next_line(0, &str);
 	ERR1(!ft_strncmp("$$$ exec p1", str, 11), ft_strdel(&str), 'o');
@@ -21,7 +21,7 @@ static	int		ft_player_check(char *str)
 	return (0);
 }
 
-int				main(void)
+int					main(void)
 {
 	char		*str;
 	char		**array;
