@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_filler.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andres <andres@student.42.fr>              +#+  +:+       +#+        */
+/*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 21:08:29 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/21 11:20:25 by andres           ###   ########.fr       */
+/*   Updated: 2017/05/21 11:32:13 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static	void		ft_print_map(t_map m)
 				ft_dprintf(2, "%s%c%s", Y, m.map[m.row][m.col], W);
 			else if (m.map[m.row][m.col] == '1')
 				ft_dprintf(2, "%s%c%s", G, m.map[m.row][m.col], W);
-			else if (m.map[m.row][m.col] > '')
+			else
 				ft_dprintf(2, "%s%c%s", G, m.map[m.row][m.col], W);
 			m.col++;
 		}

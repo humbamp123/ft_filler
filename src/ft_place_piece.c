@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_place_piece.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andres <andres@student.42.fr>              +#+  +:+       +#+        */
+/*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 18:28:54 by andres            #+#    #+#             */
-/*   Updated: 2017/05/21 11:27:41 by andres           ###   ########.fr       */
+/*   Updated: 2017/05/21 11:35:05 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static	int		ft_zone_count(t_map *m, t_piece *p)
 
 	i = m->row;
 	p->checky = -1;
+	p->zone_count = 0;
 	while (i < m->height && ++p->checky < p->real_height)
 	{
 		p->checkx = -1;
@@ -27,11 +28,12 @@ static	int		ft_zone_count(t_map *m, t_piece *p)
 		{
 			if(ft_isprint(m->map[i][j]) &&
 					p->piece[p->checky][p->checkx] == '*')
-				p->zone_count == m->map[i][j] - '0';
+				p->zone_count = m->map[i][j] - '0';
 			j++;
 		}
 		i++;
 	}
+	return (p->zone_count);
 }
 
 static	int		ft_piece_check(t_map *m, t_piece *p)
@@ -86,7 +88,7 @@ static	void	ft_try_piece_here(t_map *m, t_piece *p)
 		p->col = p->savex;
 		while (p->col < p->real_width)
 		{
-			if (p->piece[p->row][p->col] == '*' && !ft_piece_reject)
+			if (p->piece[p->row][p->col] == '*' && !ft_piece_reject(m, p))
 			{
 			}
 			else if (p->piece[p->row][p->col] == '*' && ft_piece_check(m, p)
