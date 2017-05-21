@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_zone_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andres <andres@student.42.fr>              +#+  +:+       +#+        */
+/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 12:36:45 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/20 20:46:33 by andres           ###   ########.fr       */
+/*   Updated: 2017/05/20 23:45:38 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	ft_zone_enemy(t_map *m)
 {
 	m->layer_counter = 0;
 	m->layer_num = 0;
-	while (m->layer_counter < 9)
+	while (m->layer_counter < 5)
 	{
 		if (m->layer_counter < 3)
 			m->layer_num++;
@@ -77,7 +77,7 @@ void		ft_zone_map(t_map *m)
 		m->col = 0;
 		while (m->col < m->width)
 		{
-			ft_tolower(m->map[m->row][m->col]);
+			m->map[m->row][m->col] = ft_tolower(m->map[m->row][m->col]);
 			m->col++;
 		}
 		m->row++;

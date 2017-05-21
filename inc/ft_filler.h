@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_filler.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andres <andres@student.42.fr>              +#+  +:+       +#+        */
+/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 21:11:14 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/20 20:58:33 by andres           ###   ########.fr       */
+/*   Updated: 2017/05/21 00:24:28 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ typedef struct		s_piece
 	int				width;
 	int				row;
 	int				col;
+	int				flag;
+	int				savex;
+	int				savey;
+	int				real_width;
+	int				real_height;
 	char			**piece;
 
 }					t_piece;

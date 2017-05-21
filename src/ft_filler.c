@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_filler.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andres <andres@student.42.fr>              +#+  +:+       +#+        */
+/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 21:08:29 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/20 21:06:21 by andres           ###   ########.fr       */
+/*   Updated: 2017/05/21 00:47:42 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,34 @@ static void			ft_read_map(t_map *m)
 	m->map = map_cpy;
 }
 
+static	void		ft_print_map(t_map m)
+{
+	ft_dprintf(2, "\n\n\n");
+	m.row = 0;
+	while (m.row < m.height)
+	{
+		m.col = 0;
+		while (m.col < m.width)
+		{
+			if (m.map[m.row][m.col] == '3')
+				ft_dprintf(2, "%s%c%s", R, m.map[m.row][m.col], W);
+			else if (m.map[m.row][m.col] == '2')
+				ft_dprintf(2, "%s%c%s", Y, m.map[m.row][m.col], W);
+			else if (m.map[m.row][m.col] == '1')
+				ft_dprintf(2, "%s%c%s", G, m.map[m.row][m.col], W);
+			else if (m.map[m.row][m.col] == m.player)
+				ft_dprintf(2, "%s%c%s", C, m.map[m.row][m.col], W);
+			else if (ft_isalpha(m.map[m.row][m.col]))
+				ft_dprintf(2, "%s%c%s", B, m.map[m.row][m.col], W);
+			else
+				ft_dprintf(2, "%s%c%s", G, m.map[m.row][m.col], W);
+			m.col++;
+		}
+		ft_dprintf(2, "\n");
+		m.row++;
+	}
+}
+
 int					main(void)
 {
 	char		*str;
@@ -72,23 +100,8 @@ int					main(void)
 	ft_map_size(map);
 	ft_read_map(map);
 	ft_zone_map(map);
+	ft_print_map(*map);
 	ft_save_piece(piece);
-	map->row = 0;
-	// printf("%d\n", map->h);
-	while (map->row < map->height)
-	{
-		ft_dprintf(2, "%d: %s\n", map->row, map->map[map->row]);
-		map->row++;
-	}
-	// ft_dprintf(2, "height = %d, width = %d\n", map->h, map->w);
-	// while (get_next_line(0, &str) > 0)
-	// {
-	// 	ERR((array = ft_strsplit(str, ' ')) == NULL, -1);
-	// 	ft_insert_row(map, array);
-	// 	map->y_cnt++;
-	// 	ft_arraydel(array);
-	// 	ft_strdel(&str);
-	// }
 	ft_arraydel(map->map);
 	free(map);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/21 11:21:43 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/19 21:48:31 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/21 00:09:17 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@
 # include <stdint.h>
 # include "libprintf.h"
 
-# define G "\033[32;1m"
-# define Y "\033[33;1m"
-# define R "\033[31;1m"
-# define B "\033[34;1m"
-# define W "\033[0m"
+# define G "\e[32;1m"
+# define Y "\e[33;1m"
+# define R "\e[31;1m"
+# define B "\e[34;1m"
+# define C "\e[36;1m"
+# define W "\e[0m"
 
 # ifndef ERRS
 #  define ERR(a, b) if(a){return(b);}

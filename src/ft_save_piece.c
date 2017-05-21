@@ -3,14 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_save_piece.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andres <andres@student.42.fr>              +#+  +:+       +#+        */
+/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 15:38:28 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/20 20:50:01 by andres           ###   ########.fr       */
+/*   Updated: 2017/05/21 01:00:39 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_filler.h"
+
+static	void			ft_real_piece(t_piece *p)
+{
+	char	*tmp;
+
+	p->row = p->savey;
+	p->real_height = p->height;
+	ft_dprintf(1, "before = %d\n", p->savex);
+	while (p->row < p->height)
+	{
+		tmp = p->piece[p->row];
+		ft_dprintf(2, "strchr = %d\n", ft_strchr(p->piece[p->row], '*') - tmp);
+		if (ft_strchr(p->piece[p->row], '*') &&
+			ft_strchr(p->piece[p->row], '*') - tmp < p->savex)
+			p->savex = ft_strchr(p->piece[p->row], '*') - tmp;
+		if (!ft_strchr(p->piece[p->row], '*') && p->row < p->real_height && p->row > p->savey)
+			p->real_height = p->row
+		ft_dprintf(2, "row = %d height = %d", p->row, p->height);
+		p->row++;
+	}
+	ft_dprintf(1, "after = %d\n", p->savex);
+}
 
 static	void			ft_piece_size(t_piece *p)
 {
@@ -29,24 +51,27 @@ static	void			ft_piece_size(t_piece *p)
 void					ft_save_piece(t_piece *p)
 {
 	char	*str;
+	char	*tmp;
 	char	**array;
 	char	**piece_cpy;
 
 	ft_piece_size(p);
 	str = NULL;
-	p->row = 0;
 	piece_cpy = (char **)ft_memalloc(sizeof(char *) * p->height);
 	while (p->row < p->height)
 	{
 		get_next_line(0, &str);
-		piece_cpy[p->row++] = ft_strdup(str);
-		ft_strdel(&str);
+		tmp = str;
+		piece_cpy[p->row] = ft_strdup(str);
+		if (ft_strchr(str, '*') != NULL && !p->flag)
+		{
+			p->savex = ft_strchr(str, '*') - tmp;
+			p->savey = p->row;
+			p->flag = 1;
+		}
+		p->row++;
+		ft_strdel(&tmp);
 	}
 	p->piece = piece_cpy;
-	p->row = 0;
-	while (p->row < p->height)
-	{
-		ft_dprintf(2, "%d: %s\n", p->row, p->piece[p->row]);
-		p->row++;
-	}
+	ft_real_piece(p);
 }
