@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_zone_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: andres <andres@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 12:36:45 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/20 15:28:51 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/20 20:46:33 by andres           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,79 +17,70 @@ static void	ft_surround(t_map *m)
 	int		tmp_i;
 	int		tmp_j;
 
-	m->k = 3;
-	tmp_i = m->i ? m->i - 1 : m->i;
-	while (tmp_i < m->h && m->k > 0)
+	m->row_counter = m->row ? 3 : 2;
+	tmp_i = m->row ? m->row - 1 : m->row;
+	while (tmp_i < m->height && m->row_counter > 0)
 	{
-		m->l = 3;
-		tmp_j = m->j ? m->j - 1 : m->j;
-		while (tmp_j < m->w && m->l > 0)
+		m->col_counter = m->col ? 3 : 2;
+		tmp_j = m->col ? m->col - 1 : m->col;
+		while (tmp_j < m->width && m->col_counter > 0)
 		{
-			// ft_dprintf(2, "w = %d h = %d\n", m->w, m->h);
-			// ft_dprintf(2, "x = %d y = %d, char = %c\n", tmp_j, tmp_i, m->map[tmp_i][tmp_j]);
-			if (!ft_isalpha(m->map[tmp_i][tmp_j]) && !ft_isdigit(m->map[tmp_i][tmp_j]))
-				m->map[tmp_i][tmp_j] = m->z + '0';
-
-			m->l--;
+			if (!ft_isalpha(m->map[tmp_i][tmp_j]) &&
+					!ft_isdigit(m->map[tmp_i][tmp_j]))
+				m->map[tmp_i][tmp_j] = m->layer_num + '0';
+			m->col_counter--;
 			tmp_j++;
-			// ft_dprintf(2, "l = %d tmpj = %d\n", m->l, tmp_j);
 		}
-		m->k--;
+		m->row_counter--;
 		tmp_i++;
-		// ft_dprintf(2, "k = %d h = %d\n", m->k, tmp_i);
 	}
 }
 
 static void	ft_zone_score(t_map *m)
 {
-	m->i = 0;
-	while (m->i < m->h)
+	m->row = 0;
+	while (m->row < m->height)
 	{
-		m->j = 0;
-		while (m->j < m->w)
+		m->col = 0;
+		while (m->col < m->width)
 		{
-			if (ft_isalnum(m->map[m->i][m->j]) && (m->map[m->i][m->j] != m->player) && m->map[m->i][m->j] != m->z + '0')
-			{
-				// ft_dprintf(2, "here = %d and = %d", m->i, m->j);
+			if (ft_isalnum(m->map[m->row][m->col]) &&
+				m->map[m->row][m->col] != m->player &&
+				m->map[m->row][m->col] != m->layer_num + '0')
 				ft_surround(m);
-			}
-			m->j++;
+			m->col++;
 		}
-		m->i++;
+		m->row++;
 	}
 }
 
 static void	ft_zone_enemy(t_map *m)
 {
-	m->x = 0;
-	m->z = 0;
-	while (m->x < 5)
+	m->layer_counter = 0;
+	m->layer_num = 0;
+	while (m->layer_counter < 9)
 	{
-		if (m->x < 3)
-			m->z++;
+		if (m->layer_counter < 3)
+			m->layer_num++;
 		else
-			m->z--;
+			m->layer_num--;
 		ft_zone_score(m);
-		m->x++;
-		// ft_dprintf(2, "here = %d and = %d", m->x, m->z);
+		m->layer_counter++;
 	}
 }
 
 void		ft_zone_map(t_map *m)
 {
-	m->i = 0;
-	while (m->i < m->h)
+	m->row = 0;
+	while (m->row < m->height)
 	{
-		m->j = 0;
-		while (m->j < m->w)
+		m->col = 0;
+		while (m->col < m->width)
 		{
-			if (m->map[m->i][m->j] == '.')
-				m->map[m->i][m->j] = '/';
-			else
-				m->map[m->i][m->j] = ft_tolower(m->map[m->i][m->j]);
-			m->j++;
+			ft_tolower(m->map[m->row][m->col]);
+			m->col++;
 		}
-		m->i++;
+		m->row++;
 	}
 	ft_zone_enemy(m);
 }

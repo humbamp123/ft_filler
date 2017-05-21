@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_save_piece.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: andres <andres@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 15:38:28 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/20 15:43:52 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/20 20:50:01 by andres           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,33 @@ static	void			ft_piece_size(t_piece *p)
 	str = NULL;
 	get_next_line(0, &str);
 	array = ft_strsplit(str, ' ');
-	p->h = ft_atoi(array[1]);
-	p->w = ft_atoi(array[2]);
+	p->height = ft_atoi(array[1]);
+	p->width = ft_atoi(array[2]);
 	ft_arraydel(array);
+	ft_strdel(&str);
 }
 
 void					ft_save_piece(t_piece *p)
 {
+	char	*str;
+	char	**array;
+	char	**piece_cpy;
+
 	ft_piece_size(p);
-	p->i = 0;
-	while (p->i < p->h)
+	str = NULL;
+	p->row = 0;
+	piece_cpy = (char **)ft_memalloc(sizeof(char *) * p->height);
+	while (p->row < p->height)
 	{
-		while (p->j < p->w)
-		{
-			
-		}
+		get_next_line(0, &str);
+		piece_cpy[p->row++] = ft_strdup(str);
+		ft_strdel(&str);
 	}
-}		
+	p->piece = piece_cpy;
+	p->row = 0;
+	while (p->row < p->height)
+	{
+		ft_dprintf(2, "%d: %s\n", p->row, p->piece[p->row]);
+		p->row++;
+	}
+}

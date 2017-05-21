@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: apineda <apineda@student.42.fr>            +#+  +:+       +#+         #
+#    By: andres <andres@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/08 14:15:48 by apineda           #+#    #+#              #
-#    Updated: 2017/05/20 15:38:52 by apineda          ###   ########.fr        #
+#    Updated: 2017/05/20 21:06:29 by andres           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ INCLUDE_DIR = ./inc
 
 CC = gcc
 
-CCFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CCFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
 INC = $(INCLUDE_DIR)
 LIBFT = ./libft
 LIBFT_A = libft.a
