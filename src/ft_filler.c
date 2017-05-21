@@ -6,7 +6,7 @@
 /*   By: andres <andres@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 21:08:29 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/21 06:01:25 by andres           ###   ########.fr       */
+/*   Updated: 2017/05/21 11:00:08 by andres           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,8 @@ int					main(void)
 	ft_zone_map(map);
 	ft_print_map(*map);
 	ft_save_piece(piece);
-	ft_save_piece(map, piece);
 	ft_place_piece(map, piece);
-	ft_dprintf(1, "%d %d\n", p->ret_x, p->ret_y);
+	ft_dprintf(1, "%d %d\n", piece->ret_x, piece->ret_y);
 	ft_arraydel(piece->piece);
 	ft_arraydel(map->map);
 	free(piece);

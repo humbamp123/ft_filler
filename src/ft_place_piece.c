@@ -6,7 +6,7 @@
 /*   By: andres <andres@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 18:28:54 by andres            #+#    #+#             */
-/*   Updated: 2017/05/21 05:59:13 by andres           ###   ########.fr       */
+/*   Updated: 2017/05/21 11:01:51 by andres           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static	int		ft_piece_reject(t_map *m, t_piece *p)
 		p->piece[p->row + 1][p->col - 1] == '*' &&
 		p->piece[p->row + 1][p->col] == '*' &&
 		p->piece[p->row + 1][p->col + 1] == '*', 0);
-	return (1)
+	return (1);
 }
 
 static	void	ft_try_piece_here(t_map *m, t_piece *p)
@@ -97,7 +97,7 @@ static	void	ft_try_piece_here(t_map *m, t_piece *p)
 	}
 }
 
-void			ft_place_piece(t_map *map, t_piece *p)
+void			ft_place_piece(t_map *m, t_piece *p)
 {
 	m->row = 0;
 	p->zone_count = 0;
@@ -107,7 +107,7 @@ void			ft_place_piece(t_map *map, t_piece *p)
 		while (m->col < m->width)
 		{
 			if(m->map[m->row][m->col] == m->player)
-				ft_try_piece_here(map, p);
+				ft_try_piece_here(m, p);
 			m->col++;
 		}
 		m->row++;
