@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_filler.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: andres <andres@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 21:08:29 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/21 00:47:42 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/21 06:01:25 by andres           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_filler.h"
 
-static	char		ft_player_check()
+static	char		ft_player_check(void)
 {
 	char		*str;
 
@@ -38,7 +38,7 @@ static	void		ft_map_size(t_map *m)
 	ft_strdel(&str);
 }
 
-static void			ft_read_map(t_map *m)
+static	void		ft_read_map(t_map *m)
 {
 	char	*str;
 	char	**array;
@@ -102,7 +102,12 @@ int					main(void)
 	ft_zone_map(map);
 	ft_print_map(*map);
 	ft_save_piece(piece);
+	ft_save_piece(map, piece);
+	ft_place_piece(map, piece);
+	ft_dprintf(1, "%d %d\n", p->ret_x, p->ret_y);
+	ft_arraydel(piece->piece);
 	ft_arraydel(map->map);
+	free(piece);
 	free(map);
 	return (0);
 }

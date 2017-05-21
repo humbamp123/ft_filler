@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_zone_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: andres <andres@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 12:36:45 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/20 23:45:38 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/21 06:02:06 by andres           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_filler.h"
 
-static void	ft_surround(t_map *m)
+static	void	ft_surround(t_map *m)
 {
 	int		tmp_i;
 	int		tmp_j;
@@ -36,7 +36,7 @@ static void	ft_surround(t_map *m)
 	}
 }
 
-static void	ft_zone_score(t_map *m)
+static	void	ft_zone_score(t_map *m)
 {
 	m->row = 0;
 	while (m->row < m->height)
@@ -54,13 +54,14 @@ static void	ft_zone_score(t_map *m)
 	}
 }
 
-static void	ft_zone_enemy(t_map *m)
+static	void	ft_zone_enemy(t_map *m)
 {
 	m->layer_counter = 0;
 	m->layer_num = 0;
-	while (m->layer_counter < 5)
+	m->zone_max = m->col / 4;
+	while (m->layer_counter < m->zone_max)
 	{
-		if (m->layer_counter < 3)
+		if (m->layer_counter < m->zone_max / 2)
 			m->layer_num++;
 		else
 			m->layer_num--;
@@ -69,7 +70,7 @@ static void	ft_zone_enemy(t_map *m)
 	}
 }
 
-void		ft_zone_map(t_map *m)
+void			ft_zone_map(t_map *m)
 {
 	m->row = 0;
 	while (m->row < m->height)

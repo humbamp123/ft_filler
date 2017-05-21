@@ -6,13 +6,13 @@
 #    By: andres <andres@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/08 14:15:48 by apineda           #+#    #+#              #
-#    Updated: 2017/05/20 21:06:29 by andres           ###   ########.fr        #
+#    Updated: 2017/05/21 05:59:46 by andres           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = filler
 
-FILENAMES = ft_filler ft_zone_map ft_save_piece
+FILENAMES = ft_filler ft_zone_map ft_save_piece ft_place_piece
 INCLUDE_DIR = ./inc
 
 CC = gcc
