@@ -18,6 +18,7 @@ static	void			ft_real_piece(t_piece *p)
 
 	p->row = p->savey;
 	p->real_height = p->height;
+	p->height = p->savex;
 	ft_dprintf(1, "before = %d\n", p->savex);
 	while (p->row < p->height)
 	{
@@ -28,6 +29,9 @@ static	void			ft_real_piece(t_piece *p)
 			p->savex = ft_strchr(p->piece[p->row], '*') - tmp;
 		if (!ft_strchr(p->piece[p->row], '*') && p->row < p->real_height && p->row > p->savey)
 			p->real_height = p->row
+		p->col = p->savex;
+		while (p->col < p->width)
+			p->real_width = p->piece[p->row][p->col] == '*' && p->col > p->real_width ? p->col++ : p->real_width;
 		ft_dprintf(2, "row = %d height = %d", p->row, p->height);
 		p->row++;
 	}
