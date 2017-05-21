@@ -6,7 +6,7 @@
 /*   By: andres <andres@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 21:08:29 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/21 11:00:08 by andres           ###   ########.fr       */
+/*   Updated: 2017/05/21 11:20:25 by andres           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,17 +68,17 @@ static	void		ft_print_map(t_map m)
 		m.col = 0;
 		while (m.col < m.width)
 		{
-			if (m.map[m.row][m.col] == '3')
+			if (m.map[m.row][m.col] == m.player)
+				ft_dprintf(2, "%s%c%s", C, m.map[m.row][m.col], W);
+			else if (m.map[m.row][m.col] == m.enemy)
+				ft_dprintf(2, "%s%c%s", B, m.map[m.row][m.col], W);
+			else if (m.map[m.row][m.col] > '3')
 				ft_dprintf(2, "%s%c%s", R, m.map[m.row][m.col], W);
 			else if (m.map[m.row][m.col] == '2')
 				ft_dprintf(2, "%s%c%s", Y, m.map[m.row][m.col], W);
 			else if (m.map[m.row][m.col] == '1')
 				ft_dprintf(2, "%s%c%s", G, m.map[m.row][m.col], W);
-			else if (m.map[m.row][m.col] == m.player)
-				ft_dprintf(2, "%s%c%s", C, m.map[m.row][m.col], W);
-			else if (ft_isalpha(m.map[m.row][m.col]))
-				ft_dprintf(2, "%s%c%s", B, m.map[m.row][m.col], W);
-			else
+			else if (m.map[m.row][m.col] > '')
 				ft_dprintf(2, "%s%c%s", G, m.map[m.row][m.col], W);
 			m.col++;
 		}
@@ -97,6 +97,8 @@ int					main(void)
 	map = (t_map *)ft_memalloc(sizeof(t_map));
 	piece = (t_piece *)ft_memalloc(sizeof(t_piece));
 	map->player = !map->player ? ft_player_check() : map->player;
+	if (!map->enemy)
+		map->enemy = map->player == 'o' ? 'x' : 'o';
 	ft_map_size(map);
 	ft_read_map(map);
 	ft_zone_map(map);

@@ -6,7 +6,7 @@
 /*   By: andres <andres@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 15:38:28 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/21 11:00:31 by andres           ###   ########.fr       */
+/*   Updated: 2017/05/21 11:28:34 by andres           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,13 @@ static	void			ft_real_piece(t_piece *p)
 		if (ft_strchr(p->piece[p->row], '*') &&
 			ft_strchr(p->piece[p->row], '*') - tmp < p->savex)
 			p->savex = ft_strchr(p->piece[p->row], '*') - tmp;
-		if (!ft_strchr(p->piece[p->row], '*') && p->row < p->real_height && p->row > p->savey)
+		if (!ft_strchr(p->piece[p->row], '*') && p->row < p->real_height &&
+							p->row > p->savey)
 			p->real_height = p->row;
 		p->col = p->savex;
 		while (p->col < p->width)
-			p->real_width = p->piece[p->row][p->col] == '*' && p->col > p->real_width ? p->col++ : p->real_width;
+			p->real_width = p->piece[p->row][p->col] == '*' &&
+				p->col > p->real_width ? p->col++ : p->real_width;
 		ft_dprintf(2, "row = %d height = %d", p->row, p->height);
 		p->row++;
 	}

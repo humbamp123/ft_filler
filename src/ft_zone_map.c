@@ -6,7 +6,7 @@
 /*   By: andres <andres@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 12:36:45 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/21 06:02:06 by andres           ###   ########.fr       */
+/*   Updated: 2017/05/21 11:14:40 by andres           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ static	void	ft_zone_enemy(t_map *m)
 	m->layer_counter = 0;
 	m->layer_num = 0;
 	m->zone_max = m->col / 4;
+	m->zone_max = m->zone_max > 29 ? 29 : m->zone_max;
 	while (m->layer_counter < m->zone_max)
 	{
 		if (m->layer_counter < m->zone_max / 2)

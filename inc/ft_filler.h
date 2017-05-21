@@ -6,7 +6,7 @@
 /*   By: andres <andres@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 21:11:14 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/21 06:00:28 by andres           ###   ########.fr       */
+/*   Updated: 2017/05/21 11:20:47 by andres           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct		s_map
 	int				layer_num;
 	int				zone_max;
 	char			player;
+	char			enemy;
 	int				height;
 	int				width;
 	char			**map;
