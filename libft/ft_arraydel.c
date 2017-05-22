@@ -6,21 +6,21 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 17:21:43 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/11 17:22:09 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/22 01:22:55 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_arraydel(char **ray)
+void	ft_arraydel(char **arr, int size)
 {
-	char	**ar;
+	int i;
 
-	ar = ray;
-	if (ray)
+	if (arr && *arr)
 	{
-		while (*ray)
-			ft_strdel(&*ray++);
-		free(ar);
+		i = 0;
+		while (i < size)
+			free(arr[i++]);
+		free(arr);
 	}
 }

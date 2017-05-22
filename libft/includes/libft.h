@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/21 11:21:43 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/21 00:09:17 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/22 01:22:40 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ int					ft_absval(int num);
 int					ft_isupper(int c);
 int					ft_islower(int c);
 int					get_next_line(const int fd, char **line);
-void				ft_arraydel(char **as);
+void				ft_arraydel(char **arr, int size);
 int					ft_dprintf(int fd, const char *format, ...);
 int					ft_printf(const char *format, ...);
 int					ft_vprintf(const char *format, va_list args);

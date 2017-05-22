@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: andres <andres@student.42.fr>              +#+  +:+       +#+         #
+#    By: apineda <apineda@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/08 14:15:48 by apineda           #+#    #+#              #
-#    Updated: 2017/05/21 05:59:46 by andres           ###   ########.fr        #
+#    Updated: 2017/05/21 20:22:57 by apineda          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = filler
 
-FILENAMES = ft_filler ft_zone_map ft_save_piece ft_place_piece
+FILENAMES = ft_filler ft_zone_map ft_save_piece ft_place_piece ft_print_map
 INCLUDE_DIR = ./inc
 
 CC = gcc
@@ -30,7 +30,7 @@ all: $(NAME)
 $(NAME): $(SRC_1)
 	@make -C libft
 	@echo "\033[32mCompiled libft\033[0m"
-	@$(CC) -g -I $(INC) -I $(LIBFT)/includes $(LIBFT_ALL) $(SRC_1) -o $(NAME)
+	@$(CC) $(CCFLAGS) -I $(INC) -I $(LIBFT)/includes $(LIBFT_ALL) $(SRC_1) -o $(NAME)
 	@echo "\033[32m$(NAME) compiled\033[0m"
 
 clean:
