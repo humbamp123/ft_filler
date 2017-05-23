@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 17:21:43 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/22 01:22:55 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/22 14:47:25 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_arraydel(char **arr, int size)
 {
-	int i;
+	int	i;
 
 	if (arr && *arr)
 	{

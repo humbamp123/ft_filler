@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 15:38:28 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/22 01:51:00 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/22 18:45:56 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,9 @@ static	void			ft_real_piece(t_piece *p)
 
 	p->row = p->save_row;
 	p->height = p->real_height;
-	// ft_dprintf(1, "before row = %d, before col = %d max height = %d\n", p->save_row, p->save_col, p->height);
 	while (p->row < p->height)
 	{
 		tmp = p->piece[p->row];
-		// ft_dprintf(2, "strchr = %d\n", ft_strchr(p->piece[p->row], '*') - tmp);
 		if (ft_strchr(p->piece[p->row], '*') &&
 			ft_strchr(p->piece[p->row], '*') - tmp < p->save_col)
 			p->save_col = ft_strchr(p->piece[p->row], '*') - tmp;
@@ -30,14 +28,11 @@ static	void			ft_real_piece(t_piece *p)
 		while (p->col < p->width)
 		{
 			p->real_width = p->piece[p->row][p->col] == '*' &&
-				p->col > p->real_width ? p->col : p->real_width;
+				p->col >= p->real_width ? p->col + 1 : p->real_width;
 			p->col++;
 		}
-		// ft_dprintf(2, "\ncurrent row = %d and height = %d\n", p->row, p->height);
 		p->row++;
 	}
-	// ft_dprintf(1, "after row = %d, after col = %d\n", p->save_row, p->save_col);
-	ft_dprintf(1, "real_height %d, real_width = %d\n", p->real_height, p->real_width);
 }
 
 static	void			ft_piece_size(t_piece *p)
@@ -89,13 +84,10 @@ void					ft_save_piece(t_piece *p, char **str)
 			ft_strdel(&tmp);
 		}
 		p->row++;
-		ft_dprintf(2, "%s%d%s\n", R, p->row, W);
 		ft_strdel(&tmp);
 	}
-	ft_dprintf(2, "%s%d %d%s\n", R, p->height, p->width, W);
 	p->real_height = !p->real_height ? p->row : p->real_height;
-	p->real_width = !p->real_width ? 1 : p->real_width;
-	ft_dprintf(2, "%s%d%s\n", R, p->real_height, W);
+	p->real_width = !p->real_width ? p->col : p->real_width;
 	p->piece = piece_cpy;
 	ft_real_piece(p);
 }

@@ -6,19 +6,18 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 21:08:29 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/22 01:24:17 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/22 20:00:03 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_filler.h"
 
-int					g_turn;
 int					g_player;
 
 static	char		ft_player_check(char **str)
 {
-	ERR1(!ft_strncmp("$$$ exec p1", *str, 11), ft_strdel(str), 'o');
-	ERR1(!ft_strncmp("$$$ exec p2", *str, 11), ft_strdel(str), 'x');
+	ERR1(!ft_strncmp("$$$ exec p1", *str, 11), ft_strdel(str), 'O');
+	ERR1(!ft_strncmp("$$$ exec p2", *str, 11), ft_strdel(str), 'X');
 	return (0);
 }
 
@@ -65,24 +64,21 @@ int					main(void)
 	g_player = 0;
 	while (get_next_line(0, &str) > 0)
 	{
-		g_turn = g_turn ? 0 : 1;
 		ft_bzero(&map, sizeof(t_map));
 		ft_bzero(&piece, sizeof(t_piece));
 		map.player = !g_player ? ft_player_check(&str) : g_player;
 		g_player = map.player;
 		if (!map.enemy)
-			map.enemy = map.player == 'o' ? 'x' : 'o';
+			map.enemy = map.player == 'O' ? 'X' : 'O';
 		ft_map_size(&map, &str);
 		ft_read_map(&map);
 		ft_save_piece(&piece, &str);
-		piece.row = 0;
-		while (piece.row < piece.height)
-		{
-			ft_dprintf(2, "%s%s%s\n", G, piece.piece[piece.row++], W);
-		}
 		ft_zone_map(&map);
 		ft_print_map(map);
-		ft_place_piece(&map, &piece);
+		if (map.player == 'O')
+			map.height < 50 ? ft_place_piece(&map, &piece) : ft_rev_place_piece(&map, &piece);
+		else
+			map.height > 50 ? ft_place_piece(&map, &piece) : ft_rev_place_piece(&map, &piece);
 	}
 	return (0);
 }

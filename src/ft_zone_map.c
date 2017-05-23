@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 12:36:45 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/21 16:09:21 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/22 19:58:00 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,11 @@ static	void	ft_zone_enemy(t_map *m)
 {
 	m->layer_counter = 0;
 	m->layer_num = 0;
-	m->zone_odd = m->col % 2 ? 1 : 0;
 	m->zone_even = m->col % 2 ? 0 : -1;
+	m->zone_odd = m->col % 2 && m->zone_max < 20 ? 1 : 0;
 	m->zone_max = m->col / 4 + m->zone_odd;
 	m->zone_max = m->zone_max > 20 ? 18 : m->zone_max;
+	m->zone_odd = m->zone_max % 2 ? 1 : 0;
 	while (m->layer_counter < m->zone_max + m->zone_even)
 	{
 		if (m->layer_counter < m->zone_max / 2 + m->zone_odd)
@@ -83,7 +84,7 @@ void			ft_zone_map(t_map *m)
 		while (m->col < m->width)
 		{
 			if (ft_isalpha(m->map[m->row][m->col]))
-				m->map[m->row][m->col] = ft_tolower(m->map[m->row][m->col]);
+				m->map[m->row][m->col] = ft_toupper(m->map[m->row][m->col]);
 			else
 				m->map[m->row][m->col] = '0';
 			m->col++;

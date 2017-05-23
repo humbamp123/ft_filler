@@ -1,1 +1,6 @@
-seed = 1426
+seed = 3011
+O: error on input
+./../filler: Segfault at 0
+players/carli.filler won
+Score:
+0AGAINST387

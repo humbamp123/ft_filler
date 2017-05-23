@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 21:11:14 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/21 23:58:43 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/22 18:58:25 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ typedef struct		s_piece
 	int				save_row;
 	int				real_width;
 	int				real_height;
-	int				zone_count;
+	int				z_cnter;
+	int				z_count;
 	int				count;
 	int				ret_col;
 	int				ret_row;
@@ -58,5 +59,8 @@ void				ft_zone_map(t_map *m);
 void				ft_save_piece(t_piece *p, char **str);
 void				ft_place_piece(t_map *map, t_piece *p);
 void				ft_print_map(t_map m);
+void				ft_rev_place_piece(t_map *m, t_piece *p);
+void				ft_try_piece_here(t_map *m, t_piece *p);
+int					ft_map_reject(t_map *m);
 
 #endif
