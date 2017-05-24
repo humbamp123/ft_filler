@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_filler.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/19 21:08:29 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/23 01:41:53 by qho              ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_filler.h"
 
 int					g_player;
@@ -68,17 +56,18 @@ int					main(void)
 		ft_bzero(&piece, sizeof(t_piece));
 		map.player = !g_player ? ft_player_check(&str) : g_player;
 		g_player = map.player;
-		if (!map.enemy)
-			map.enemy = map.player == 'O' ? 'X' : 'O';
+		map.enemy = map.player == 'O' ? 'X' : 'O';
 		ft_map_size(&map, &str);
 		ft_read_map(&map);
 		ft_save_piece(&piece, &str);
 		ft_zone_map(&map);
 		ft_print_map(map);
 		if (map.player == 'O')
-			map.height < 50 ? ft_place_piece(&map, &piece) : ft_rev_place_piece(&map, &piece);
+			map.up = map.height < 50 ? -1 : 1;
 		else
-			map.height > 50 ? ft_place_piece(&map, &piece) : ft_rev_place_piece(&map, &piece);
+			map.up = map.height < 50 ? 1 : 1;
+		map.up == 1 ? ft_place_piece(&map, &piece) :
+			ft_rev_place_piece(&map, &piece);
 	}
 	return (0);
 }

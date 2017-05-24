@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_filler.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/19 21:11:14 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/22 18:58:25 by apineda          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef FT_FILLER_H
 # define FT_FILLER_H
 
@@ -50,6 +38,7 @@ typedef struct		s_map
 	int				zone_even;
 	char			player;
 	char			enemy;
+	int				up;
 	int				height;
 	int				width;
 	char			**map;
@@ -62,5 +51,6 @@ void				ft_print_map(t_map m);
 void				ft_rev_place_piece(t_map *m, t_piece *p);
 void				ft_try_piece_here(t_map *m, t_piece *p);
 int					ft_map_reject(t_map *m);
+void				ft_save_ret(t_map *m, t_piece *p);
 
 #endif

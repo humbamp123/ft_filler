@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_print_map.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/21 19:34:24 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/22 18:57:18 by apineda          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_filler.h"
 
 void			ft_print_map(t_map m)
@@ -56,11 +44,43 @@ int				ft_map_reject(t_map *m)
 	return (1);
 }
 
+static	void	ft_save_up_down(t_map *m, t_piece *p)
+{
+	p->z_cnter = !p->z_cnter ? 1 : p->z_cnter;
+	p->z_count = p->z_cnter;
+	p->ret_col = m->col - p->col;
+	p->ret_row = m->row - p->row;
+	m->up = 0;
+}
+
+void			ft_save_ret(t_map *m, t_piece *p)
+{
+	if (p->z_cnter > p->z_count)
+	{
+		p->z_count = p->z_cnter;
+		p->ret_col = m->col - p->col;
+		p->ret_row = m->row - p->row;
+		m->up = 0;
+	}
+	else if (m->up == 1 && !p->z_cnter && p->row == p->real_height - 1 &&
+			p->col == p->real_width - 1)
+		ft_save_up_down(m, p);
+	else if (m->up == -1 && !p->z_cnter && p->row == p->save_row &&
+			p->col == p->save_col)
+		ft_save_up_down(m, p);
+	else if (m->up != 0 && p->ret_col == -1 && p->ret_row == -1)
+	{
+		p->ret_col = m->col - p->col;
+		p->ret_row = m->row - p->row;
+	}
+}
+
 void			ft_rev_place_piece(t_map *m, t_piece *p)
 {
 	m->row = m->height - 1;
-	p->ret_row = 0;
-	p->ret_col = 0;
+	p->ret_row = -1;
+	p->ret_col = -1;
+	p->z_count = 0;
 	while (0 <= m->row)
 	{
 		m->col = m->width - 1;
@@ -72,7 +92,8 @@ void			ft_rev_place_piece(t_map *m, t_piece *p)
 		}
 		m->row--;
 	}
-	ft_printf("%d %d\n", p->ret_row, p->ret_col);
+	p->ret_row == -1 && p->ret_col == -1 ?
+		ft_printf("0 0\n") : ft_printf("%d %d\n", p->ret_row, p->ret_col);
 	ft_arraydel(p->piece, p->real_height);
 	ft_arraydel(m->map, m->height);
 }

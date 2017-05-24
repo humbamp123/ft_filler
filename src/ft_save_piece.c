@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_save_piece.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/20 15:38:28 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/22 18:45:56 by apineda          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_filler.h"
 
 static	void			ft_real_piece(t_piece *p)
@@ -67,7 +55,7 @@ static	int				ft_piece_rows(t_piece *p, char *str, char *tmp)
 
 void					ft_save_piece(t_piece *p, char **str)
 {
-	char	*tmp;
+	char	**tmp;
 	char	**piece_cpy;
 
 	ft_piece_size(p);
@@ -76,15 +64,15 @@ void					ft_save_piece(t_piece *p, char **str)
 	while (p->row < p->height)
 	{
 		get_next_line(0, str);
-		tmp = *str;
+		tmp = str;
 		piece_cpy[p->row] = ft_strdup(*str);
-		if (ft_piece_rows(p, *str, tmp))
+		if (ft_piece_rows(p, *str, *tmp))
 		{
 			p->real_height = p->row;
-			ft_strdel(&tmp);
+			ft_strdel(tmp);
 		}
 		p->row++;
-		ft_strdel(&tmp);
+		ft_strdel(tmp);
 	}
 	p->real_height = !p->real_height ? p->row : p->real_height;
 	p->real_width = !p->real_width ? p->col : p->real_width;
