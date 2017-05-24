@@ -61,7 +61,7 @@ int					main(void)
 		ft_read_map(&map);
 		ft_save_piece(&piece, &str);
 		ft_zone_map(&map);
-		ft_print_map(map);
+		// ft_print_map(map);
 		if (map.player == 'O')
 			map.up = map.height < 50 ? -1 : 1;
 		else
