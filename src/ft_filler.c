@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_filler.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/24 15:18:09 by apineda           #+#    #+#             */
+/*   Updated: 2017/05/24 15:22:06 by apineda          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_filler.h"
 
 int					g_player;
@@ -61,7 +73,7 @@ int					main(void)
 		ft_read_map(&map);
 		ft_save_piece(&piece, &str);
 		ft_zone_map(&map);
-		// ft_print_map(map);
+		ft_print_map(map);
 		if (map.player == 'O')
 			map.up = map.height < 50 ? -1 : 1;
 		else
