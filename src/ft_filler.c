@@ -77,7 +77,7 @@ int					main(void)
 		if (map.player == 'O')
 			map.up = map.height < 50 ? -1 : 1;
 		else
-			map.up = map.height < 50 ? 1 : 1;
+			map.up = map.height < 50 ? 1 : -1;
 		map.up == 1 ? ft_place_piece(&map, &piece) :
 			ft_rev_place_piece(&map, &piece);
 	}

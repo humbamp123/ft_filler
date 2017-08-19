@@ -17,7 +17,7 @@ INCLUDE_DIR = ./inc
 
 CC = gcc
 
-CCFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
+CCFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
 INC = $(INCLUDE_DIR)
 LIBFT = ./libft
 LIBFT_A = libft.a
